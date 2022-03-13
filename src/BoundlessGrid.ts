@@ -45,6 +45,10 @@ export class BoundlessGrid<T = any> {
     }
   }
 
+  has(entity: T) {
+    return this.entities.has(entity)
+  }
+
   clear() {
     this.grid = {}
     this.entities.clear()
