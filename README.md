@@ -4,4 +4,4 @@
 
 # INGRID
 
-## Spatial Hash Grids and not much else.
+### Spatial Hash Grids and not much else.
