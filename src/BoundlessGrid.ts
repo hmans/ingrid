@@ -12,7 +12,7 @@ export class BoundlessGrid<T = any> {
   private grid: Record<SpatialHash, T[]> = {}
   private entities = new Map<T, SpatialHash>()
 
-  constructor(public cellSize: number = 10) {}
+  constructor(public cellSize: number) {}
 
   set(entity: T, position: IVector3) {
     /* Calculate hash for entity */
