@@ -28,10 +28,10 @@ const makeEntities = (num: number): Entity[] => {
   return entities
 }
 
-const addEntities = (iterations = 1000, numEntities = 10_000) => {
+const addEntities = (iterations = 100, numEntities = 10_000) => {
   /* Create entities */
   const entities = makeEntities(numEntities)
-  const grid = new BoundlessGrid()
+  const grid = new BoundlessGrid(50)
 
   const start = now()
   for (let i = 0; i < iterations; i++) {
@@ -47,10 +47,10 @@ const addEntities = (iterations = 1000, numEntities = 10_000) => {
   return [`Adding ${numEntities} entities:`, time.toFixed(3)]
 }
 
-const moveEntities = (iterations = 1000, numEntities = 10_000) => {
+const moveEntities = (iterations = 100, numEntities = 10_000) => {
   /* Create entities */
   const entities = makeEntities(numEntities)
-  const grid = new BoundlessGrid()
+  const grid = new BoundlessGrid(50)
 
   for (const entity of entities) {
     grid.set(entity, entity.position)
