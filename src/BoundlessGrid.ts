@@ -55,6 +55,11 @@ export class BoundlessGrid<T = any> {
     return this.grid[hash]
   }
 
+  getEntitiesInSameCell(position: IVector3) {
+    const hash = this.calculateHashForPosition(position)
+    return this.grid[hash]
+  }
+
   getNearbyEntities(
     position: IVector3,
     maxDistance: number,
