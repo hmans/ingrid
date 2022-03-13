@@ -8,11 +8,11 @@ type Entity = {
   }
 }
 
-const makeEntity = (): Entity => ({
+const makeEntity = (x?: number, y?: number, z?: number): Entity => ({
   position: {
-    x: Math.random() * 1000 - 1000,
-    y: Math.random() * 1000 - 1000,
-    z: Math.random() * 1000 - 1000
+    x: x ?? Math.random() * 1000 - 1000,
+    y: y ?? Math.random() * 1000 - 1000,
+    z: z ?? Math.random() * 1000 - 1000
   }
 })
 
@@ -23,6 +23,20 @@ describe(BoundlessGrid, () => {
       const entity = makeEntity()
       grid.set(entity, entity.position)
       expect(grid.getEntitiesInSameCell(entity.position)).toEqual([entity])
+    })
+  })
+
+  describe("remove", () => {
+    it("removes an entity from the grid", () => {
+      /* First, add the entity */
+      const grid = new BoundlessGrid(10)
+      const entity = makeEntity()
+      grid.set(entity, entity.position)
+      expect(grid.getEntitiesInSameCell(entity.position)).toEqual([entity])
+
+      /* Now remove it and check if it's gone */
+      grid.remove(entity)
+      expect(grid.getEntitiesInSameCell(entity.position)).toEqual([])
     })
   })
 })
