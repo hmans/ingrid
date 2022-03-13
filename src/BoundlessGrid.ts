@@ -1,20 +1,18 @@
-export type SpatialHash = string
+import { Grid } from "./Grid"
 
-interface IVector3 {
-  x: number
-  y: number
-  z: number
-}
+type SpatialHash = string
 
 type Cell = [number, number, number]
 
-export class BoundlessGrid<T = any> {
-  private grid: Record<SpatialHash, T[]> = {}
-  private entities = new Map<T, SpatialHash>()
+export class BoundlessGrid<Entity = any> extends Grid<Entity> {
+  private grid: Record<SpatialHash, Entity[]> = {}
+  private entities = new Map<Entity, SpatialHash>()
 
-  constructor(public cellSize: number) {}
+  constructor(public cellSize: number) {
+    super()
+  }
 
-  set(entity: T, position: IVector3) {
+  set(entity: Entity, position: IVector3) {
     /* Calculate hash for entity */
     const hash = this.calculateHashForPosition(position)
 
@@ -34,7 +32,7 @@ export class BoundlessGrid<T = any> {
     this.entities.set(entity, hash)
   }
 
-  remove(entity: T) {
+  remove(entity: Entity) {
     const previous = this.entities.get(entity)
 
     if (previous) {
@@ -45,7 +43,7 @@ export class BoundlessGrid<T = any> {
     }
   }
 
-  has(entity: T) {
+  has(entity: Entity) {
     return this.entities.has(entity)
   }
 
