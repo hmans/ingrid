@@ -5,3 +5,9 @@
 # INGRID
 
 ### Spatial Hash Grids and not much else.
+
+## TODO
+
+- [ ] Implement `BoundedGrid`, using numerical instead of string hashes
+- [ ] Experiment with and implement `CascadeGrid`
+- [ ] Allow entities to take up volume (ie. exist in multiple cells)
