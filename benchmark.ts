@@ -37,7 +37,7 @@ const addEntities = (iterations = 100, numEntities = 10_000) => {
   for (let i = 0; i < iterations; i++) {
     /* Add objects to grid */
     for (const entity of entities) {
-      grid.set(entity, entity.position)
+      grid.placeEntity(entity, entity.position)
     }
     grid.clear()
   }
@@ -53,7 +53,7 @@ const moveEntities = (iterations = 100, numEntities = 10_000) => {
   const grid = new BoundlessGrid(50)
 
   for (const entity of entities) {
-    grid.set(entity, entity.position)
+    grid.placeEntity(entity, entity.position)
   }
 
   const start = now()
@@ -64,7 +64,7 @@ const moveEntities = (iterations = 100, numEntities = 10_000) => {
       entity.position.x = Math.random() * 1000 - 1000
       entity.position.y = Math.random() * 1000 - 1000
       entity.position.z = Math.random() * 1000 - 1000
-      grid.set(entity, entity.position)
+      grid.placeEntity(entity, entity.position)
     }
   }
   const stop = now()

@@ -1,4 +1,5 @@
 import { Grid } from "./Grid"
+import { IVector3 } from "./types"
 
 type SpatialHash = string
 

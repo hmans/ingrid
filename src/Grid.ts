@@ -1,3 +1,5 @@
+import { IVector3 } from "./types"
+
 export abstract class Grid<Entity = any> {
   abstract placeEntity(entity: Entity, position: IVector3): void
 
