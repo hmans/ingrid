@@ -53,8 +53,6 @@ describe(BoundlessGrid, () => {
       grid.placeEntity(entityC, entityC.position)
       grid.placeEntity(entityOutside, entityOutside.position)
 
-      console.log(grid.getEntitiesInSameCell(entityA.position))
-
       expect(grid.getEntitiesInSameCell(entityA.position)).toEqual([
         entityA,
         entityB,
@@ -80,8 +78,6 @@ describe(BoundlessGrid, () => {
         entityDefinitelyOutside,
         entityDefinitelyOutside.position
       )
-
-      console.log(grid.getEntitiesInSameCell(entityA.position))
 
       const result = grid.getNearbyEntities(entityA.position, 3)
 
