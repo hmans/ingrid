@@ -79,4 +79,5 @@ const results = [
   moveEntities()
 ]
 
+console.log("\n⏰ RESULTS\n")
 console.log(table(results))
