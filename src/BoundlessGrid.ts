@@ -45,6 +45,11 @@ export class BoundlessGrid<T = any> {
     }
   }
 
+  clear() {
+    this.grid = {}
+    this.entities.clear()
+  }
+
   getEntitiesInCell(cell: Cell) {
     const hash = this.calculateHashForCell(cell)
     return this.grid[hash]
