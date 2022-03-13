@@ -12,14 +12,14 @@ export class BoundlessGrid<Entity = any> extends Grid<Entity> {
     super()
   }
 
-  set(entity: Entity, position: IVector3) {
+  placeEntity(entity: Entity, position: IVector3) {
     /* Calculate hash for entity */
     const hash = this.calculateHashForPosition(position)
 
     const previous = this.entities.get(entity)
 
     if (previous && previous !== hash) {
-      this.remove(entity)
+      this.removeEntity(entity)
     }
 
     /* Make sure cell is created */
@@ -32,7 +32,7 @@ export class BoundlessGrid<Entity = any> extends Grid<Entity> {
     this.entities.set(entity, hash)
   }
 
-  remove(entity: Entity) {
+  removeEntity(entity: Entity) {
     const previous = this.entities.get(entity)
 
     if (previous) {
@@ -43,7 +43,7 @@ export class BoundlessGrid<Entity = any> extends Grid<Entity> {
     }
   }
 
-  has(entity: Entity) {
+  hasEntity(entity: Entity) {
     return this.entities.has(entity)
   }
 

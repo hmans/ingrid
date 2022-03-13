@@ -21,8 +21,8 @@ describe(BoundlessGrid, () => {
     it("adds an entity to the correct cell, depending on its position", () => {
       const grid = new BoundlessGrid(10)
       const entity = makeEntity()
-      grid.set(entity, entity.position)
-      expect(grid.has(entity)).toBeTruthy()
+      grid.placeEntity(entity, entity.position)
+      expect(grid.hasEntity(entity)).toBeTruthy()
     })
   })
 
@@ -31,11 +31,11 @@ describe(BoundlessGrid, () => {
       /* First, add the entity */
       const grid = new BoundlessGrid(10)
       const entity = makeEntity()
-      grid.set(entity, entity.position)
+      grid.placeEntity(entity, entity.position)
       expect(grid.getEntitiesInSameCell(entity.position)).toEqual([entity])
 
       /* Now remove it and check if it's gone */
-      grid.remove(entity)
+      grid.removeEntity(entity)
       expect(grid.getEntitiesInSameCell(entity.position)).toEqual([])
     })
   })
@@ -48,10 +48,10 @@ describe(BoundlessGrid, () => {
       const entityC = makeEntity(2, 2, 2)
       const entityOutside = makeEntity(11, 11, 11)
 
-      grid.set(entityA, entityA.position)
-      grid.set(entityB, entityB.position)
-      grid.set(entityC, entityC.position)
-      grid.set(entityOutside, entityOutside.position)
+      grid.placeEntity(entityA, entityA.position)
+      grid.placeEntity(entityB, entityB.position)
+      grid.placeEntity(entityC, entityC.position)
+      grid.placeEntity(entityOutside, entityOutside.position)
 
       console.log(grid.getEntitiesInSameCell(entityA.position))
 
@@ -72,11 +72,14 @@ describe(BoundlessGrid, () => {
       const entityOutsideButInCell = makeEntity(5, 5, 5)
       const entityDefinitelyOutside = makeEntity(11, 11, 11)
 
-      grid.set(entityA, entityA.position)
-      grid.set(entityB, entityB.position)
-      grid.set(entityC, entityC.position)
-      grid.set(entityOutsideButInCell, entityOutsideButInCell.position)
-      grid.set(entityDefinitelyOutside, entityDefinitelyOutside.position)
+      grid.placeEntity(entityA, entityA.position)
+      grid.placeEntity(entityB, entityB.position)
+      grid.placeEntity(entityC, entityC.position)
+      grid.placeEntity(entityOutsideButInCell, entityOutsideButInCell.position)
+      grid.placeEntity(
+        entityDefinitelyOutside,
+        entityDefinitelyOutside.position
+      )
 
       console.log(grid.getEntitiesInSameCell(entityA.position))
 
