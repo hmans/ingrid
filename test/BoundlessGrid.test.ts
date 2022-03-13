@@ -62,4 +62,36 @@ describe(BoundlessGrid, () => {
       ])
     })
   })
+
+  describe("getNearbyEntities", () => {
+    it("returns the entities that are potentially within the specified maximum distance", () => {
+      const grid = new BoundlessGrid(10)
+      const entityA = makeEntity(0, 0, 0)
+      const entityB = makeEntity(-1, -1, -1)
+      const entityC = makeEntity(1, 1, 1)
+      const entityOutsideButInCell = makeEntity(5, 5, 5)
+      const entityDefinitelyOutside = makeEntity(11, 11, 11)
+
+      grid.set(entityA, entityA.position)
+      grid.set(entityB, entityB.position)
+      grid.set(entityC, entityC.position)
+      grid.set(entityOutsideButInCell, entityOutsideButInCell.position)
+      grid.set(entityDefinitelyOutside, entityDefinitelyOutside.position)
+
+      console.log(grid.getEntitiesInSameCell(entityA.position))
+
+      const result = grid.getNearbyEntities(entityA.position, 3)
+
+      expect(result).toEqual(
+        expect.arrayContaining([
+          entityA,
+          entityB,
+          entityC,
+          entityOutsideButInCell
+        ])
+      )
+
+      expect(result).not.toContain(entityDefinitelyOutside)
+    })
+  })
 })
