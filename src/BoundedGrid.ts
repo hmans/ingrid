@@ -1,12 +1,12 @@
 import { Grid } from "./Grid"
 import { IVector3 } from "./types"
 
-type SpatialHash = string
+type SpatialHash = number
 
 type Cell = [number, number, number]
 
-export class BoundlessGrid<Entity = any> extends Grid<Entity> {
-  private grid: Record<SpatialHash, Entity[]> = {}
+export class BoundedGrid<Entity = any> extends Grid<Entity> {
+  private grid: Record<SpatialHash, Entity[]> = []
   private entities = new Map<Entity, SpatialHash>()
 
   constructor(public cellSize: number) {
@@ -107,7 +107,7 @@ export class BoundlessGrid<Entity = any> extends Grid<Entity> {
 
   private calculateHashForCell(cell: Cell): SpatialHash {
     /* JSON.stringify is surprisingly fast :b */
-    return JSON.stringify(cell)
+    return cell[2] * 1000000 + cell[1] * 1000 + cell[0]
   }
 
   private calculateHashForPosition(position: IVector3): SpatialHash {
